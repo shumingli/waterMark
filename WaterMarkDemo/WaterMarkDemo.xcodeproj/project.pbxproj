@@ -39,6 +39,9 @@
 		04114A121CD1A4FE0001EA34 /* a.png in Resources */ = {isa = PBXBuildFile; fileRef = 04114A111CD1A4FE0001EA34 /* a.png */; };
 		04114A131CD1A4FE0001EA34 /* a.png in Resources */ = {isa = PBXBuildFile; fileRef = 04114A111CD1A4FE0001EA34 /* a.png */; };
 		04114A141CD1A4FE0001EA34 /* a.png in Resources */ = {isa = PBXBuildFile; fileRef = 04114A111CD1A4FE0001EA34 /* a.png */; };
+		04114A161CD1D7B50001EA34 /* b.png in Resources */ = {isa = PBXBuildFile; fileRef = 04114A151CD1D7B50001EA34 /* b.png */; };
+		04114A171CD1D7B50001EA34 /* b.png in Resources */ = {isa = PBXBuildFile; fileRef = 04114A151CD1D7B50001EA34 /* b.png */; };
+		04114A181CD1D7B50001EA34 /* b.png in Resources */ = {isa = PBXBuildFile; fileRef = 04114A151CD1D7B50001EA34 /* b.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +87,7 @@
 		04114A0C1CD1A3410001EA34 /* EditImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditImageView.h; sourceTree = "<group>"; };
 		04114A0D1CD1A3410001EA34 /* EditImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditImageView.m; sourceTree = "<group>"; };
 		04114A111CD1A4FE0001EA34 /* a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = a.png; sourceTree = "<group>"; };
+		04114A151CD1D7B50001EA34 /* b.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = b.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +138,7 @@
 		041149C01CD1A1590001EA34 /* WaterMarkDemo */ = {
 			isa = PBXGroup;
 			children = (
+				04114A151CD1D7B50001EA34 /* b.png */,
 				04114A111CD1A4FE0001EA34 /* a.png */,
 				041149F41CD1A30A0001EA34 /* Close.png */,
 				041149F51CD1A30B0001EA34 /* Close@2x.png */,
@@ -285,6 +290,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04114A161CD1D7B50001EA34 /* b.png in Resources */,
 				04114A001CD1A30B0001EA34 /* Close@3x.png in Resources */,
 				04114A061CD1A30B0001EA34 /* Enlarge@2x.png in Resources */,
 				041149FD1CD1A30B0001EA34 /* Close@2x.png in Resources */,
@@ -304,6 +310,7 @@
 			files = (
 				04114A071CD1A30B0001EA34 /* Enlarge@2x.png in Resources */,
 				04114A041CD1A30B0001EA34 /* Enlarge.png in Resources */,
+				04114A171CD1D7B50001EA34 /* b.png in Resources */,
 				04114A0A1CD1A30B0001EA34 /* Enlarge@3x.png in Resources */,
 				04114A131CD1A4FE0001EA34 /* a.png in Resources */,
 				04114A011CD1A30B0001EA34 /* Close@3x.png in Resources */,
@@ -318,6 +325,7 @@
 			files = (
 				04114A081CD1A30B0001EA34 /* Enlarge@2x.png in Resources */,
 				04114A051CD1A30B0001EA34 /* Enlarge.png in Resources */,
+				04114A181CD1D7B50001EA34 /* b.png in Resources */,
 				04114A0B1CD1A30B0001EA34 /* Enlarge@3x.png in Resources */,
 				04114A141CD1A4FE0001EA34 /* a.png in Resources */,
 				04114A021CD1A30B0001EA34 /* Close@3x.png in Resources */,
@@ -562,6 +570,7 @@
 				041149ED1CD1A15A0001EA34 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		041149EE1CD1A15A0001EA34 /* Build configuration list for PBXNativeTarget "WaterMarkDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -570,6 +579,7 @@
 				041149F01CD1A15A0001EA34 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		041149F11CD1A15A0001EA34 /* Build configuration list for PBXNativeTarget "WaterMarkDemoUITests" */ = {
 			isa = XCConfigurationList;
@@ -578,6 +588,7 @@
 				041149F31CD1A15A0001EA34 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

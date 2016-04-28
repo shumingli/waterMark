@@ -12,9 +12,12 @@
     BOOL _isMove;
     CGPoint _startTouchPoint;
     CGPoint _startTouchCenter;
+    UIView *_borderView;
     UIImageView *_editImgView;
-    UIImageView *_closeImgView;
+    UIButton *_closeImgView;
     CGFloat _len;
 }
+
+- (void)hideEditBtn;
 
 @end

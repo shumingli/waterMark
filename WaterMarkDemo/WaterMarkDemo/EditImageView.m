@@ -19,12 +19,14 @@
 }
 
 - (void)addUI{
-    UIView *borderView = [[UIView alloc] initWithFrame:CGRectMake(5, 5, self.frame.size.width-5*2, self.frame.size.height-5*2)];
+    CGFloat space = 10;
+    UIView *borderView = [[UIView alloc] initWithFrame:CGRectMake(space, space, self.frame.size.width-space*2, self.frame.size.height-space*2)];
     borderView.backgroundColor = [UIColor clearColor];
     borderView.layer.borderColor = [UIColor whiteColor].CGColor;
     borderView.layer.borderWidth = 2;
     borderView.layer.masksToBounds = YES;
     [self addSubview:borderView];
+    _borderView = borderView;
     
     UIImage *editImg = [UIImage imageNamed:@"Enlarge.png"];
     UIImageView *editImgView = [[UIImageView alloc] initWithFrame:CGRectMake(self.frame.size.width-editImg.size.width/2-5, -5, editImg.size.width, editImg.size.height)];
@@ -33,22 +35,43 @@
     [self addSubview:editImgView];
     _editImgView = editImgView;
     
-    UIImage *closeImg = [UIImage imageNamed:@"Close.png"];
-    UIImageView *closeImgView = [[UIImageView alloc] initWithFrame:CGRectMake(5, self.frame.size.height - 5, closeImg.size.width, closeImg.size.height)];
-    closeImgView.image = closeImg;
-    closeImgView.center = CGPointMake(borderView.frame.origin.x, borderView.frame.origin.y+borderView.frame.size.height);
-    [self addSubview:closeImgView];
-    _closeImgView = closeImgView;
+    UIImage *norImage = [UIImage imageNamed:@"Close.png"];
+    UIImage *selImage = [UIImage imageNamed:@"Close.png"];
+    UIButton *closeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    closeBtn.frame = CGRectMake(5, self.frame.size.height - 5, norImage.size.width, norImage.size.height);
+    [closeBtn setImage:norImage forState:UIControlStateNormal];
+    [closeBtn setImage:selImage forState:UIControlStateHighlighted];
+    [closeBtn addTarget:self action:@selector(closeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:closeBtn];
+    closeBtn.center = CGPointMake(borderView.frame.origin.x, borderView.frame.origin.y+borderView.frame.size.height);
+    _closeImgView = closeBtn;
     
    _len = sqrt(self.frame.size.width/2*self.frame.size.width/2+self.frame.size.height/2*self.frame.size.height/2);
 }
+- (void)closeBtnClick:(UIButton *)btn{
+    self.hidden = YES;
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"remove" object:self];
+}
+
+- (void)showEditBtn{
+    _borderView.hidden = NO;
+    _editImgView.hidden = NO;
+    _closeImgView.hidden = NO;
+}
+- (void)hideEditBtn{
+    _borderView.hidden = YES;
+    _editImgView.hidden = YES;
+    _closeImgView.hidden = YES;
+}
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [self showEditBtn];
     UITouch *touch = [touches anyObject];
     _startTouchPoint = [touch locationInView:self.superview];
     _startTouchCenter = self.center;
     _isMove = YES;
     CGPoint p = [touch locationInView:self];
+    NSLog(@"ttddddddddd----- %@   %@",NSStringFromCGRect(_editImgView.frame),NSStringFromCGPoint(p));
     if (CGRectContainsPoint(_editImgView.frame,p)) {
         _isMove = NO;
     }
@@ -72,6 +95,11 @@
         }else{
             angle = angle + 225;
         }
+        
+        _editImgView.transform = CGAffineTransformMakeScale(1.0f/scale, 1.0f/scale);
+        _closeImgView.transform = CGAffineTransformMakeScale(1.0f/scale, 1.0f/scale);
+        _borderView.layer.borderWidth = 2*1.0f/scale;
+
         CGFloat rad = angle/180*M_PI;
         self.transform = CGAffineTransformMakeScale(scale, scale);
         self.transform = CGAffineTransformRotate(self.transform,rad);
