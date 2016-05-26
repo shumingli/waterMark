@@ -19,7 +19,7 @@
 }
 
 - (void)addUI{
-    CGFloat space = 10;
+    CGFloat space = 20;
     UIView *borderView = [[UIView alloc] initWithFrame:CGRectMake(space, space, self.frame.size.width-space*2, self.frame.size.height-space*2)];
     borderView.backgroundColor = [UIColor clearColor];
     borderView.layer.borderColor = [UIColor whiteColor].CGColor;
@@ -29,7 +29,7 @@
     _borderView = borderView;
     
     UIImage *editImg = [UIImage imageNamed:@"Enlarge.png"];
-    UIImageView *editImgView = [[UIImageView alloc] initWithFrame:CGRectMake(self.frame.size.width-editImg.size.width/2-5, -5, editImg.size.width, editImg.size.height)];
+    UIImageView *editImgView = [[UIImageView alloc] initWithFrame:CGRectMake(self.frame.size.width-editImg.size.width/2-5, -space, editImg.size.width, editImg.size.height)];
     editImgView.image = editImg;
     editImgView.center = CGPointMake(borderView.frame.origin.x+borderView.frame.size.width, borderView.frame.origin.y);
     [self addSubview:editImgView];
@@ -38,7 +38,7 @@
     UIImage *norImage = [UIImage imageNamed:@"Close.png"];
     UIImage *selImage = [UIImage imageNamed:@"Close.png"];
     UIButton *closeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    closeBtn.frame = CGRectMake(5, self.frame.size.height - 5, norImage.size.width, norImage.size.height);
+    closeBtn.frame = CGRectMake(1, self.frame.size.height - space, norImage.size.width, norImage.size.height);
     [closeBtn setImage:norImage forState:UIControlStateNormal];
     [closeBtn setImage:selImage forState:UIControlStateHighlighted];
     [closeBtn addTarget:self action:@selector(closeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
