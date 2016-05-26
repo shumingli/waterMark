@@ -11,6 +11,8 @@
 
 @interface ViewController (){
     NSMutableArray *_editImageViewArray;
+    UIView *_bgView;
+    UIButton *_saveBtn;
 }
 
 @end
@@ -31,6 +33,7 @@
     UIView *bgView = [[UIView alloc] initWithFrame:self.view.frame];
     bgView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:bgView];
+    _bgView = bgView;
     
     UIView *tabView = [[UIView alloc] initWithFrame:bgView.frame];
     tabView.backgroundColor = [UIColor clearColor];
@@ -50,14 +53,50 @@
     [bgView addSubview:editImgView2];
     [_editImageViewArray addObject:editImgView2];
     
+    UIButton *saveBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    saveBtn.backgroundColor = [UIColor orangeColor];
+    saveBtn.layer.cornerRadius = 5;
+    saveBtn.frame = CGRectMake(20,self.view.frame.size.height - 60 , self.view.frame.size.width-40, 30);
+    [saveBtn setTitle:@"保存相册" forState:UIControlStateNormal];
+    [saveBtn addTarget:self action:@selector(saveBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    saveBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+    saveBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
+    [saveBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.view addSubview:saveBtn];
+    _saveBtn = saveBtn;
+}
+
+- (void)saveBtnClick:(UIButton *)sender{
+//    sender.hidden = YES;
+    [self saveToPhotosAlbum];
+}
+//保存到相册
+- (void)saveToPhotosAlbum{
+    UIImage *viewImage = [self imageThumb];
+    UIImageWriteToSavedPhotosAlbum(viewImage, nil, nil, nil);
+}
+//截图，获取到image
+- (UIImage *)imageThumb{
+    [self hideAllBtn];
+    CGPoint point = [[_bgView superview] convertPoint:_bgView.frame.origin toView:_bgView];
+    CGRect rect = CGRectMake(point.x, point.y, _bgView.frame.size.width, _bgView.frame.size.height);
     
+    UIGraphicsBeginImageContext(rect.size);
+    [_bgView.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage * viewImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return viewImage;
+}
+
+- (void)hideAllBtn{
+    for (EditImageView *editImgView in _editImageViewArray) {
+        [editImgView hideEditBtn];
+    }
 }
 
 - (void)tapClick:(UITapGestureRecognizer *)tapGesture{
     NSLog(@"tttttttt");
-    for (EditImageView *editImgView in _editImageViewArray) {
-        [editImgView hideEditBtn];
-    }
+    [self hideAllBtn];
 }
 
 - (void)removeEdit:(NSNotification *)notify{
