@@ -21,7 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor grayColor];
+    self.view.backgroundColor = [UIColor whiteColor];
     _editImageViewArray = [[NSMutableArray alloc] init];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeEdit:) name:@"remove" object:NULL];
     [self addUI];
@@ -31,7 +31,7 @@
     UIImage *img = [UIImage imageNamed:@"a.png"];
     self.view.userInteractionEnabled = YES;
     UIView *bgView = [[UIView alloc] initWithFrame:self.view.frame];
-    bgView.backgroundColor = [UIColor clearColor];
+    bgView.backgroundColor = [UIColor grayColor];
     [self.view addSubview:bgView];
     _bgView = bgView;
     
